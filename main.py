@@ -16,12 +16,14 @@ def is_safe_to_move(position: Coordinate, board: Board):
             board[x][y] == -1)
 
 def get_all_valid_possible_knight_moves(current_knight_position: Coordinate):
-    possible_moves = []
-    for x, y in possible_knight_moves:
-        new_position = (current_knight_position[0] + x, current_knight_position[1] + y)
-        if is_safe_to_move(position=new_position, board=board):
-            possible_moves.append(new_position)
-    return possible_moves
+    return [
+        (current_knight_position[0] + x, current_knight_position[1] + y) 
+        for x, y in possible_knight_moves 
+        if is_safe_to_move(
+            position=(current_knight_position[0] + x, current_knight_position[1] + y) , 
+            board=board
+        )
+    ]
 
 def knigh_tour_solution(position: Coordinate, moves=1):
     if moves == board_size**2:
